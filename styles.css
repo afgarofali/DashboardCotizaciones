@@ -1,0 +1,145 @@
+body{
+    margin: 2rem 1rem 0 1rem;
+    background-image: url("./Wallpaperkiss_1924201.jpg");
+    background-size: 1800px;
+    ;
+}
+
+.contenBody{
+    display: none;
+}
+
+
+.titulos{
+    text-align: center;
+
+}
+
+.contenedoresMuestra{
+    width: 64rem;
+}
+
+.tarjetas{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+.card{
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 0.5rem 1rem 0.5rem 1rem;
+  }
+
+.card-header{
+    text-align: center;
+}
+
+.listados{
+    margin-top:1rem;
+}
+
+.listadoFavoritas{
+
+    width: 100%;
+}
+
+.listadoFavoritasContenedor{   
+    display: grid;
+    grid-template-columns: 180px 180px 180px 180px 180px 180px;
+    grid-template-rows: auto;
+    width: 80rem;
+}
+
+.cardInd{
+    text-align: center;
+}
+
+.list-group-item{
+    border-color: #fff;
+    word-spacing: 10px;
+}
+
+.rengAcc{
+padding-top: 0;
+padding-bottom: 0;
+border-bottom-width: 0;}
+
+.btn{
+    margin: 1rem 0 1rem 1rem;
+}
+
+.btn-close{
+    padding-top: 0.8rem;
+}
+
+h1,h2 {
+    margin-left: 1rem;
+}
+
+#formTenencia{
+    display: flex;
+    flex-direction: row;
+    margin: 1rem 0 0 1rem ;
+}
+
+.form-label{
+    margin-left: 1rem;
+}
+
+#precioTenencia{
+    width: 10rem;
+}
+
+.botonesTenencia{
+    display: flex;
+    flex-direction: row;
+    width: 13rem;
+}
+
+.contenedorTenencia{
+    width: 40rem;
+}
+
+.spinner{
+    position:absolute;
+    left: 300px;
+}
+
+.contenedorAcciones{
+    width: 25rem;
+    margin-left: 0.4rem;
+    padding-top: 0.5rem;
+}
+
+
+.bodyInd{
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: minmax(980px, 1fr) 600px;
+}
+
+.rounded-pill{
+    font-size:small;
+}
+
+
+#dashAccionesFilt{
+    position: relative;
+    align-self: flex-start;
+}
+
+#dashAcciones{
+    position: relative;
+    align-self: flex-start;
+}
+
+#contenedoresInd{
+    display: flex;
+    flex-direction: row;
+}
+
+.tarjetasFav{
+    width: 37rem;
+}
