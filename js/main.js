@@ -3,17 +3,20 @@ let arrayAcciones = [];
 $.get('data/acciones.json',function(datos, estado){
   if(estado == 'success'){
       for (const literal of datos) {
-        arrayAcciones.push(new Accion(literal.id, literal.ticker, literal.precio, literal.industria, literal.bolsa, literal.macd, literal.rsi, literal.wma21, literal.D1));
+        arrayAcciones.push(new Accion(literal.id, literal.ticker, literal.precio, literal.industria, literal.bolsa, literal.ppo, literal.rsi, literal.wma21, literal.D1, literal.ath, literal.ppoReco));
       }
   }
 //Ordenar arrays segun propiedades del objeto acción
 let targetBolsa = "Todas";
-let arrayMacd = [...arrayAcciones].sort((a,b)=>a.macd - b.macd);
+let arrayppo = [...arrayAcciones].sort((a,b)=>a.ppo - b.ppo);
 let arrayRsi = [...arrayAcciones].sort((a,b)=>a.rsi - b.rsi);
 let arrayWma21 = [...arrayAcciones].sort((a,b)=>a.wma21 - b.wma21);
 renderizarTarjetaWMA(arrayWma21,targetBolsa);
-renderizarTarjetaMACD(arrayMacd,targetBolsa);
+renderizarTarjetaPpo(arrayppo,targetBolsa);
 renderizarTarjetaRSI(arrayRsi,targetBolsa);
+renderizarTarjetaAth(targetBolsa);
+renderizarTarjetaSC(targetBolsa);
+renderizarTarjetaSV(targetBolsa);
 listarFavoritas();
 dashCompleto();
 generarOpciones();
@@ -132,11 +135,14 @@ let ul = document.getElementById('btnTipoBolsaItem');
       let target = event.target; 
       dashfiltrado(target.innerText);
       let arrayWma21 = [...arrayAcciones].sort((a,b)=>a.wma21 - b.wma21);
-      let arrayMacd = [...arrayAcciones].sort((a,b)=>a.macd - b.macd);
+      let arrayppo = [...arrayAcciones].sort((a,b)=>a.ppo - b.ppo);
       let arrayRsi = [...arrayAcciones].sort((a,b)=>a.rsi - b.rsi);
       renderizarTarjetaWMA(arrayWma21,target.innerText);
-      renderizarTarjetaMACD(arrayMacd,target.innerText);
+      renderizarTarjetaPpo(arrayppo,target.innerText);
       renderizarTarjetaRSI(arrayRsi,target.innerText);
+      renderizarTarjetaAth(target.innerText);
+      renderizarTarjetaSC(target.innerText);
+      renderizarTarjetaSV(target.innerText);
 };
 
 

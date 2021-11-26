@@ -1,16 +1,18 @@
 //Constructor objeto
 
 class Accion {
-    constructor(id,ticker, precio, industria, bolsa, macd, rsi, wma21, D1) {
+    constructor(id,ticker, precio, industria, bolsa, ppo, rsi, wma21, D1, ath, ppoReco) {
         this.id = id;
         this.ticker = ticker;
         this.precio = precio;
         this.industria = industria;
         this.bolsa = bolsa;
-        this.macd = macd;
+        this.ppo = ppo;
         this.rsi = rsi;
         this.wma21 = wma21;
         this.D1 = parseFloat(D1);
+        this.ath = ath;
+        this.ppoReco = ppoReco;
     }
   }
   

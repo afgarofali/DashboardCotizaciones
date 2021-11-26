@@ -4,17 +4,17 @@ let arrayIndicadores = [];
 $.get('data/acciones.json',function(datos, estado){
   if(estado == 'success'){
       for (const literal of datos) {
-        arrayAcciones.push(new Accion(literal.id, literal.ticker, literal.precio, literal.industria, literal.bolsa, literal.macd, literal.rsi, literal.wma21, literal.D1));
+        arrayAcciones.push(new Accion(literal.id, literal.ticker, literal.precio, literal.industria, literal.bolsa, literal.ppo, literal.rsi, literal.wma21, literal.D1));
       }
   }
 
 //Ordenar arrays segun propiedades del objeto acción
-let arrayMacd = [...arrayAcciones].sort((a,b)=>a.macd - b.macd);
+let arrayppo = [...arrayAcciones].sort((a,b)=>a.ppo - b.ppo);
 let arrayRsi = [...arrayAcciones].sort((a,b)=>a.rsi - b.rsi);
 let arrayWma21 = [...arrayAcciones].sort((a,b)=>a.wma21 - b.wma21);
-arrayIndicadores = [arrayMacd,arrayRsi,arrayWma21];
+arrayIndicadores = [arrayppo,arrayRsi,arrayWma21];
 renderizarTarjetaWMA(arrayWma21);
-renderizarTarjetaMACD(arrayMacd);
+renderizarTarjetappo(arrayppo);
 renderizarTarjetaRSI(arrayRsi);
 });
 
@@ -42,26 +42,26 @@ const contWma = document.getElementById("contWma");
     contWma.innerHTML = acumulador;
 };
 
-function renderizarTarjetaMACD(arrayMacd,target) {
-    const contMacd = document.getElementById("contMacd");
+function renderizarTarjetappo(arrayppo,target) {
+    const contppo = document.getElementById("contppo");
     let acumulador = '<div class="tarjetas">';
 
       acumulador += `
           <div class="card" style="width: 18rem;">
           <div class="card-header">
-          MACD
+          ppo
           </div>
           <ul class="list-group list-group-flush">
           <table>
-          <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayMacd[0].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayMacd[0].wma21}</span></td></tr></li>
-          <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayMacd[1].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayMacd[1].wma21}</span></td></tr></li>
-          <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayMacd[2].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayMacd[2].wma21}</span></td></tr></li>
-          <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayMacd[3].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayMacd[3].wma21}</span></td></tr></li>
-          <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayMacd[4].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayMacd[4].wma21}</span></td></tr></li>
+          <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayppo[0].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayppo[0].wma21}</span></td></tr></li>
+          <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayppo[1].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayppo[1].wma21}</span></td></tr></li>
+          <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayppo[2].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayppo[2].wma21}</span></td></tr></li>
+          <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayppo[3].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayppo[3].wma21}</span></td></tr></li>
+          <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayppo[4].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayppo[4].wma21}</span></td></tr></li>
           </table></ul>
         </div>`;
     acumulador += '</div>';
-    contMacd.innerHTML = acumulador;
+    contppo.innerHTML = acumulador;
 };
 
 function renderizarTarjetaRSI(arrayRsi,target) {

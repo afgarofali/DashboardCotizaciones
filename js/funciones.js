@@ -37,8 +37,8 @@ function renderizarTarjetaWMA(arrayWma21, target) {
 };
 
 
-function renderizarTarjetaMACD(arrayMacd, target) {
-  const contMacd = document.getElementById("contMacd");
+function renderizarTarjetaPpo(arrayppo, target) {
+  const contppo = document.getElementById("contppo");
   let acumulador = "";
   acumulador = `<div class="tarjetas">
     <div class="card" style="width: 18rem">
@@ -49,27 +49,27 @@ function renderizarTarjetaMACD(arrayMacd, target) {
     <table>`
   if (target == "Todas") {
     acumulador += `
-          <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayMacd[0].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayMacd[0].macd}</span></td></tr></li>
-          <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayMacd[1].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayMacd[1].macd}</span></td></tr></li>
-          <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayMacd[2].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayMacd[2].macd}</span></td></tr></li>
-          <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayMacd[3].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayMacd[3].macd}</span></td></tr></li>
-          <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayMacd[4].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayMacd[4].macd}</span></td></tr></li>
+          <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayppo[0].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayppo[0].ppo}</span></td></tr></li>
+          <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayppo[1].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayppo[1].ppo}</span></td></tr></li>
+          <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayppo[2].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayppo[2].ppo}</span></td></tr></li>
+          <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayppo[3].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayppo[3].ppo}</span></td></tr></li>
+          <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayppo[4].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayppo[4].ppo}</span></td></tr></li>
           `
   }
   let pase = 0;
-  for (let index = 0; index < arrayMacd.length; index++) {
+  for (let index = 0; index < arrayppo.length; index++) {
 
-    if (target == arrayMacd[index].bolsa && pase <= 4) {
+    if (target == arrayppo[index].bolsa && pase <= 4) {
       pase += 1;
       acumulador += `
-          <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayMacd[index].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayMacd[index].macd}</span></td></tr></li>`
+          <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayppo[index].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayppo[index].ppo}</span></td></tr></li>`
         
     }
   };
   acumulador += `</table></ul>
                   </div>
                   </div>`
-  contMacd.innerHTML = acumulador;
+  contppo.innerHTML = acumulador;
 };
 
 
@@ -110,6 +110,126 @@ function renderizarTarjetaRSI(arrayRsi, target) {
 };
 
 
+function renderizarTarjetaAth(target) {
+  const contAth = document.getElementById("contAth");
+  let pase = 0;
+  let acumulador = "";
+  acumulador = `<div class="tarjetas">
+    <div class="card" style="width: 18rem;">
+    <div class="card-header">
+    <p class="h5">ATH</p>
+    </div>
+    <ul class="list-group list-group-flush">
+    <table>`
+  if (target == "Todas") {
+    for (let index = 0; index < arrayAcciones.length; index++) {
+      if (arrayAcciones[index].ath != "0.00") {     
+        acumulador += `
+              <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayAcciones[index].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayAcciones[index].ath}</span></td></tr></li>`
+        pase = 1;
+      }
+    }
+  }
+
+  for (let index = 0; index < arrayAcciones.length; index++) {
+
+    if (target == arrayAcciones[index].bolsa && arrayAcciones[index].ath != "0.00") {
+      acumulador += `
+          <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayAcciones[index].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayAcciones[index].ath}</span></td></tr></li>`
+      pase = 1;
+        }
+  };
+  if (pase == 0) {
+    acumulador += `
+    <tr><td><li class="list-group-item cardInd"><span class="badge bg-warning text-dark">Sin resultados</td><td></span></td></tr></li>`
+  }
+  acumulador += `</table></ul>
+                  </div>
+                  </div>`
+  contAth.innerHTML = acumulador;
+};
+
+function renderizarTarjetaSC(target) {
+  const contSC = document.getElementById("contSC");
+  let pase = 0;
+  let acumulador = "";
+  acumulador = `<div class="tarjetas">
+    <div class="card" style="width: 18rem;">
+    <div class="card-header">
+    <p class="h5">Señal de Compra PPO</p>
+    </div>
+    <ul class="list-group list-group-flush">
+    <table>`
+  if (target == "Todas") {
+    for (let index = 0; index < arrayAcciones.length; index++) {
+      if (arrayAcciones[index].ppoReco == "Señal de compra") {     
+        acumulador += `
+              <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayAcciones[index].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayAcciones[index].ppoReco}</span></td></tr></li>
+              `;
+        pase = 1;
+      }
+    }
+  }
+
+  for (let index = 0; index < arrayAcciones.length; index++) {
+
+    if (target == arrayAcciones[index].bolsa && arrayAcciones[index].ppoReco == "Señal de compra") {
+      acumulador += `
+          <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayAcciones[index].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayAcciones[index].ppoReco}</span></td></tr></li>`
+          pase = 1;
+        }
+  };
+  if (pase == 0) {
+    acumulador += `
+    <tr><td><li class="list-group-item cardInd"><span class="badge bg-warning text-dark">Sin resultados</td><td></span></td></tr></li>`
+  }
+  acumulador += `</table></ul>
+                  </div>
+                  </div>`
+  contSC.innerHTML = acumulador;
+};
+
+function renderizarTarjetaSV(target) {
+  const contSV = document.getElementById("contSV");
+  let pase = 0;
+  let acumulador = "";
+  acumulador = `<div class="tarjetas">
+    <div class="card" style="width: 18rem;">
+    <div class="card-header">
+    <p class="h5">Señal de Venta PPO</p>
+    </div>
+    <ul class="list-group list-group-flush">
+    <table>`
+  if (target == "Todas") {
+    for (let index = 0; index < arrayAcciones.length; index++) {
+      if (arrayAcciones[index].ppoReco == "Señal de venta") {     
+        acumulador += `
+              <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayAcciones[index].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayAcciones[index].ppoReco}</span></td></tr></li>
+              `;
+        pase = 1;
+      }
+    }
+  }
+  
+  for (let index = 0; index < arrayAcciones.length; index++) {
+
+    if (target == arrayAcciones[index].bolsa && arrayAcciones[index].ppoReco == "Señal de venta") {
+      acumulador += `
+          <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayAcciones[index].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayAcciones[index].ppoReco}</span></td></tr></li>`
+        pase = 1;
+        }
+  };
+  if (pase == 0) {
+    acumulador += `
+    <tr><td><li class="list-group-item cardInd"><span class="badge bg-warning text-dark">Sin resultados</td><td></span></td></tr></li>`
+  }
+  acumulador += `</table></ul>
+                  </div>
+                  </div>`
+    contSV.innerHTML = acumulador;
+};
+
+
 //Listado y elección de acciones favoritas
 function listarFavoritas() {
   const listadoFavoritas = document.getElementById("listadoFavoritas");
@@ -141,7 +261,7 @@ const constructorFavoritas = function () {
 
   for (let index = 0; index < arrayAccionesFavElegidas.length; index++) {
     acumuladorFavElegidas += `
-            <tr><td><li class="list-group-item">${arrayAccionesFavElegidas[index].ticker}</td><td>   Precio: ${arrayAccionesFavElegidas[index].precio}</td><td>    PPO: ${arrayAccionesFavElegidas[index].macd}</td><td> RSI: ${arrayAccionesFavElegidas[index].rsi}</td><td> %WMA21: ${arrayAccionesFavElegidas[index].wma21} </li></td></tr>
+            <tr><td><li class="list-group-item">${arrayAccionesFavElegidas[index].ticker}</td><td>   Precio: ${arrayAccionesFavElegidas[index].precio}</td><td>    PPO: ${arrayAccionesFavElegidas[index].ppo}</td><td> RSI: ${arrayAccionesFavElegidas[index].rsi}</td><td> %WMA21: ${arrayAccionesFavElegidas[index].wma21} </li></td></tr>
             `
   }
   acumuladorFavElegidas += `</table></ul></div></div>`
