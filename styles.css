@@ -99,7 +99,7 @@ h1,h2 {
 }
 
 .contenedorTenencia{
-    width: 40rem;
+    width: 45rem;
 }
 
 .spinner{
@@ -141,5 +141,10 @@ h1,h2 {
 }
 
 .tarjetasFav{
-    width: 37rem;
+    width: 45rem;
 }
+
+
+#desplegarAth{
+    width: 8rem;
+} 

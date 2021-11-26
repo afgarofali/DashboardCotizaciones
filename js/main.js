@@ -28,14 +28,14 @@ $("#listadoFavoritas").hide();
 const mostrarFavoritas = document.getElementById("mostrarFavoritas");
 mostrarFavoritas.addEventListener("click", function(){
       constructorTenencias();  
-      $("#listadoFavoritas").show();
+      $("#listadoFavoritas").fadeIn(500);
 }) 
 
 
 //Botón Ocultar Favoritas
 const ocultarFavoritas = document.getElementById("ocultarFavoritas");
 ocultarFavoritas.addEventListener("click", function(){
-    $("#listadoFavoritas").hide();
+    $("#listadoFavoritas").fadeOut(500);
 })
 
 //Agregar Favoritas a localstorage
@@ -43,8 +43,6 @@ let arrayAccionesFavElegidas = [];
 if(localStorage.getItem("arrayAccionesFavElegidas")){
   arrayAccionesFavElegidas = JSON.parse(localStorage.getItem("arrayAccionesFavElegidas"));
 }
-
-
 
 //Botón Favoritas
 checkId = "";
@@ -61,7 +59,7 @@ botonFav.addEventListener("click", function(){
             } 
     }
     arrayAccionesFavElegidas.length = 0;
-    $("#contenedorFavoritas").fadeOut(150).fadeIn(1000);
+    $("#contenedorFavoritas").fadeOut(150).fadeIn(500);
 })
 
 
@@ -93,7 +91,7 @@ botonTenencia.addEventListener("click", function(){
       idTenencia +=1;
       arrayTenencias.push(tenencia);
       constructorTenencias();
-      $("#listadoTenencia").fadeOut(150).fadeIn(1000);
+      $("#listadoTenencia").fadeOut(150).fadeIn(500);
       localStorage.setItem("arrayTenencias",JSON.stringify(arrayTenencias))
   } else {
   alert("Inserte el nombre de una acción");

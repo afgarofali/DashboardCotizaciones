@@ -119,9 +119,16 @@ function renderizarTarjetaAth(target) {
     <div class="card-header">
     <p class="h5">ATH</p>
     </div>
-    <ul class="list-group list-group-flush">
-    <table>`
+    <ul class="list-group list-group-flush">`
+
+
   if (target == "Todas") {
+    acumulador += `<div class="dropend">
+                  <button class="btn btn-primary dropdown-toggle" type="button" id="desplegarAth" data-bs-toggle="dropdown" aria-expanded="false">
+                    Desplegar
+                  </button>
+                  <ul class="dropdown-menu" id="ulAth" aria-labelledby="desplegarAth">
+                  <table>`
     for (let index = 0; index < arrayAcciones.length; index++) {
       if (arrayAcciones[index].ath != "0.00") {     
         acumulador += `
@@ -129,6 +136,8 @@ function renderizarTarjetaAth(target) {
         pase = 1;
       }
     }
+    acumulador += `    </ul>
+                      </div>`
   }
 
   for (let index = 0; index < arrayAcciones.length; index++) {
@@ -260,9 +269,15 @@ const constructorFavoritas = function () {
                                 <ul class="list-group list-group-flush"><table>`
 
   for (let index = 0; index < arrayAccionesFavElegidas.length; index++) {
-    acumuladorFavElegidas += `
-            <tr><td><li class="list-group-item">${arrayAccionesFavElegidas[index].ticker}</td><td>   Precio: ${arrayAccionesFavElegidas[index].precio}</td><td>    PPO: ${arrayAccionesFavElegidas[index].ppo}</td><td> RSI: ${arrayAccionesFavElegidas[index].rsi}</td><td> %WMA21: ${arrayAccionesFavElegidas[index].wma21} </li></td></tr>
-            `
+    if (arrayAccionesFavElegidas[index].D1 >= 0) {
+      acumuladorFavElegidas += `
+    <tr><td><li class="list-group-item">${arrayAccionesFavElegidas[index].ticker}</td><td>   Precio: ${arrayAccionesFavElegidas[index].precio}</td><td>    PPO: ${arrayAccionesFavElegidas[index].ppo}</td><td> RSI: ${arrayAccionesFavElegidas[index].rsi}</td><td> %WMA21: ${arrayAccionesFavElegidas[index].wma21}</td><td> %Precio: <span class="badge bg-success">${arrayAccionesFavElegidas[index].D1}%</span></td></tr></li>`
+
+    } else {
+      acumuladorFavElegidas += `
+    <tr><td><li class="list-group-item">${arrayAccionesFavElegidas[index].ticker}</td><td>   Precio: ${arrayAccionesFavElegidas[index].precio}</td><td>    PPO: ${arrayAccionesFavElegidas[index].ppo}</td><td> RSI: ${arrayAccionesFavElegidas[index].rsi}</td><td> %WMA21: ${arrayAccionesFavElegidas[index].wma21}</td><td> %Precio: <span class="badge bg-danger">${arrayAccionesFavElegidas[index].D1}%</span></td></tr></li>`
+    }
+
   }
   acumuladorFavElegidas += `</table></ul></div></div>`
   if (arrayAccionesFavElegidas.length > 0) {
@@ -328,13 +343,10 @@ function dashCompleto() {
 
   for (let index = 0; index < arrayBolsas.length; index++) {
     switch (true) {
-      case (arrayBolsas[index].D1 >= 0.5):
+      case (arrayBolsas[index].D1 >= 4):
         contenedorTodas += `<tr><td><li class="list-group-item rengAcc"><span class="badge rounded-pill bg-light text-dark">${arrayBolsas[index].ticker}</span> </td> <td>${arrayBolsas[index].industria}</td> <td> <span class="badge bg-success"> ${arrayBolsas[index].D1}%</span></li></td></tr>`
         break;
-      case (arrayBolsas[index].D1 < 0.5 && arrayBolsas[index].D1 >= -0.5):
-        contenedorTodas += `<tr><td><li class="list-group-item rengAcc"><span class="badge rounded-pill bg-light text-dark">${arrayBolsas[index].ticker}</span> </td> <td>${arrayBolsas[index].industria}</td> <td> <span class="badge bg-warning"> ${arrayBolsas[index].D1}%</span></li></td></tr>`
-        break;
-      case (arrayBolsas[index].D1 < -0.5):
+      case (arrayBolsas[index].D1 < -4):
         contenedorTodas += `<tr><td><li class="list-group-item rengAcc"><span class="badge rounded-pill bg-light text-dark">${arrayBolsas[index].ticker}</span> </td> <td>${arrayBolsas[index].industria}</td> <td> <span class="badge bg-danger"> ${arrayBolsas[index].D1}%</span></li></td></tr>`
         break;
     }
