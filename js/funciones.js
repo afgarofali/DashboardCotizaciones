@@ -403,16 +403,56 @@ function dashfiltrado(target) {
 //Función para generar en el DOM las opciones del select de Bolsa
 function generarOpciones() {
   let arrayTipoBolsas = ["Índices", "Cedears", "NYSE", "Líder", "General", "Crypto", "ADR"];
-  let padre = document.getElementById("btnTipoBolsaItem");
-  let inner = "";
-  for (const elemento of arrayTipoBolsas) {
-    inner += `<li id="${elemento}" class="dropdown-item">${elemento}</li>`;
+  let btnTipoBolsaItem = document.getElementById("btnTipoBolsaItem");
+  let acumulador = "";
+  let cantIndices = 0;
+  let cantCedears = 0;
+  let cantNYSE = 0;
+  let cantLider = 0;
+  let cantGeneral = 0;
+  let cantCrypto = 0;
+  let cantADR = 0;
+
+  for (let index = 0; index < arrayAcciones.length; index++) {
+    switch (arrayAcciones[index].bolsa) {
+      case "Índices":
+      cantIndices += 1;
+        break;
+      case "Cedears":
+        cantCedears += 1;
+        break;
+      case "NYSE":
+        cantNYSE += 1;
+        break;
+      case "Líder":
+        cantLider += 1;
+        break;
+      case "General":
+        cantGeneral += 1;
+        break;
+      case "Crypto":
+        cantCrypto += 1;
+        break;
+      case "ADR":
+        cantADR += 1;
+        break;
+    }
   }
-  padre.innerHTML = inner;
-  padre = document.getElementById("btnTipoBolsaItem");
-  inner += `<li><hr class="dropdown-divider">
-                <li id="Todas" class="dropdown-item">Todas</li>`;
-  padre.innerHTML = inner;
+
+  let cantTodas = arrayAcciones.length;
+
+  acumulador +=`<li id="${arrayTipoBolsas[0]}" class="dropdown-item">${arrayTipoBolsas[0]} (${cantIndices})</li>
+              <li id="${arrayTipoBolsas[1]}" class="dropdown-item">${arrayTipoBolsas[1]} (${cantCedears})</li>
+              <li id="${arrayTipoBolsas[2]}" class="dropdown-item">${arrayTipoBolsas[2]} (${cantNYSE})</li>
+              <li id="${arrayTipoBolsas[3]}" class="dropdown-item">${arrayTipoBolsas[3]} (${cantLider})</li>
+              <li id="${arrayTipoBolsas[4]}" class="dropdown-item">${arrayTipoBolsas[4]} (${cantGeneral})</li>
+              <li id="${arrayTipoBolsas[5]}" class="dropdown-item">${arrayTipoBolsas[5]} (${cantCrypto})</li>
+              <li id="${arrayTipoBolsas[6]}" class="dropdown-item">${arrayTipoBolsas[6]} (${cantADR})</li>`;
+  
+  btnTipoBolsaItem.innerHTML = acumulador;
+  acumulador += `<li><hr class="dropdown-divider">
+                <li id="Todas" class="dropdown-item">Todas (${cantTodas})</li>`;
+  btnTipoBolsaItem.innerHTML = acumulador;
 }
 
 

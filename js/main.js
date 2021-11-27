@@ -131,16 +131,16 @@ dashCompleto();
 let ul = document.getElementById('btnTipoBolsaItem');
     ul.onclick = function(event) {
       let target = event.target; 
-      dashfiltrado(target.innerText);
+      dashfiltrado(target.id);
       let arrayWma21 = [...arrayAcciones].sort((a,b)=>a.wma21 - b.wma21);
       let arrayppo = [...arrayAcciones].sort((a,b)=>a.ppo - b.ppo);
       let arrayRsi = [...arrayAcciones].sort((a,b)=>a.rsi - b.rsi);
-      renderizarTarjetaWMA(arrayWma21,target.innerText);
-      renderizarTarjetaPpo(arrayppo,target.innerText);
-      renderizarTarjetaRSI(arrayRsi,target.innerText);
-      renderizarTarjetaAth(target.innerText);
-      renderizarTarjetaSC(target.innerText);
-      renderizarTarjetaSV(target.innerText);
+      renderizarTarjetaWMA(arrayWma21,target.id);
+      renderizarTarjetaPpo(arrayppo,target.id);
+      renderizarTarjetaRSI(arrayRsi,target.id);
+      renderizarTarjetaAth(target.id);
+      renderizarTarjetaSC(target.id);
+      renderizarTarjetaSV(target.id);
 };
 
 
