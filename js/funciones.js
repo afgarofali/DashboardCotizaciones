@@ -115,20 +115,15 @@ function renderizarTarjetaAth(target) {
   let pase = 0;
   let acumulador = "";
   acumulador = `<div class="tarjetas">
-    <div class="card" style="width: 18rem;">
+    <div class="card tarjetasMaximos" style="width: 18rem;">
     <div class="card-header">
     <p class="h5">ATH</p>
     </div>
-    <ul class="list-group list-group-flush">`
+    <ul class="list-group list-group-flush">
+    <table>`
 
 
   if (target == "Todas") {
-    acumulador += `<div class="dropend">
-                  <button class="btn btn-primary dropdown-toggle" type="button" id="desplegarAth" data-bs-toggle="dropdown" aria-expanded="false">
-                    Desplegar
-                  </button>
-                  <ul class="dropdown-menu" id="ulAth" aria-labelledby="desplegarAth">
-                  <table>`
     for (let index = 0; index < arrayAcciones.length; index++) {
       if (arrayAcciones[index].ath != "0.00") {     
         acumulador += `
@@ -163,7 +158,7 @@ function renderizarTarjetaSC(target) {
   let pase = 0;
   let acumulador = "";
   acumulador = `<div class="tarjetas">
-    <div class="card" style="width: 18rem;">
+    <div class="card tarjetasMaximos" style="width: 18rem;">
     <div class="card-header">
     <p class="h5">Señal de Compra PPO</p>
     </div>
@@ -203,7 +198,7 @@ function renderizarTarjetaSV(target) {
   let pase = 0;
   let acumulador = "";
   acumulador = `<div class="tarjetas">
-    <div class="card" style="width: 18rem;">
+    <div class="card tarjetasMaximos" style="width: 18rem;">
     <div class="card-header">
     <p class="h5">Señal de Venta PPO</p>
     </div>

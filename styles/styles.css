@@ -115,8 +115,14 @@ h1,h2 {
     width: 25rem;
     margin-left: 0.4rem;
     padding-top: 0.5rem;
+    overflow-y: scroll;
+    height: 57rem;
 }
 
+.tarjetasMaximos{
+    overflow-y: scroll;
+    height: 14rem;
+}
 
 .bodyInd{
     display: grid;
@@ -136,7 +142,7 @@ h1,h2 {
 
 #dashAcciones{
     position: relative;
-    align-self: flex-start;
+    align-self:flex-start;
 }
 
 #contenedoresInd{
