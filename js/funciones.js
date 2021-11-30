@@ -27,7 +27,7 @@ function renderizarTarjetaWMA(arrayWma21, target) {
       pase += 1;
       acumulador += `
           <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayWma21[index].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayWma21[index].wma21}</span></td></tr></li>`
-        
+
     }
   };
   acumulador += `</table></ul>
@@ -63,7 +63,7 @@ function renderizarTarjetaPpo(arrayppo, target) {
       pase += 1;
       acumulador += `
           <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayppo[index].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayppo[index].ppo}</span></td></tr></li>`
-        
+
     }
   };
   acumulador += `</table></ul>
@@ -100,7 +100,7 @@ function renderizarTarjetaRSI(arrayRsi, target) {
       pase += 1;
       acumulador += `
             <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayRsi[index].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayRsi[index].rsi}</span></td></tr></li>`
-        
+
     }
   };
   acumulador += `</table></ul>
@@ -125,7 +125,7 @@ function renderizarTarjetaAth(target) {
 
   if (target == "Todas") {
     for (let index = 0; index < arrayAcciones.length; index++) {
-      if (arrayAcciones[index].ath != "0.00") {     
+      if (arrayAcciones[index].ath != "0.00") {
         acumulador += `
               <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayAcciones[index].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayAcciones[index].ath}</span></td></tr></li>`
         pase = 1;
@@ -141,7 +141,7 @@ function renderizarTarjetaAth(target) {
       acumulador += `
           <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayAcciones[index].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayAcciones[index].ath}</span></td></tr></li>`
       pase = 1;
-        }
+    }
   };
   if (pase == 0) {
     acumulador += `
@@ -166,7 +166,7 @@ function renderizarTarjetaSC(target) {
     <table>`
   if (target == "Todas") {
     for (let index = 0; index < arrayAcciones.length; index++) {
-      if (arrayAcciones[index].ppoReco == "Señal de compra") {     
+      if (arrayAcciones[index].ppoReco == "Señal de compra") {
         acumulador += `
               <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayAcciones[index].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayAcciones[index].ppoReco}</span></td></tr></li>
               `;
@@ -180,8 +180,8 @@ function renderizarTarjetaSC(target) {
     if (target == arrayAcciones[index].bolsa && arrayAcciones[index].ppoReco == "Señal de compra") {
       acumulador += `
           <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayAcciones[index].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayAcciones[index].ppoReco}</span></td></tr></li>`
-          pase = 1;
-        }
+      pase = 1;
+    }
   };
   if (pase == 0) {
     acumulador += `
@@ -206,7 +206,7 @@ function renderizarTarjetaSV(target) {
     <table>`
   if (target == "Todas") {
     for (let index = 0; index < arrayAcciones.length; index++) {
-      if (arrayAcciones[index].ppoReco == "Señal de venta") {     
+      if (arrayAcciones[index].ppoReco == "Señal de venta") {
         acumulador += `
               <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayAcciones[index].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayAcciones[index].ppoReco}</span></td></tr></li>
               `;
@@ -214,14 +214,14 @@ function renderizarTarjetaSV(target) {
       }
     }
   }
-  
+
   for (let index = 0; index < arrayAcciones.length; index++) {
 
     if (target == arrayAcciones[index].bolsa && arrayAcciones[index].ppoReco == "Señal de venta") {
       acumulador += `
           <tr><td><li class="list-group-item cardInd"><span class="badge bg-light text-dark">${arrayAcciones[index].ticker}</td><td></span> <span class="badge bg-info text-dark">${arrayAcciones[index].ppoReco}</span></td></tr></li>`
-        pase = 1;
-        }
+      pase = 1;
+    }
   };
   if (pase == 0) {
     acumulador += `
@@ -230,7 +230,7 @@ function renderizarTarjetaSV(target) {
   acumulador += `</table></ul>
                   </div>
                   </div>`
-    contSV.innerHTML = acumulador;
+  contSV.innerHTML = acumulador;
 };
 
 
@@ -411,7 +411,7 @@ function generarOpciones() {
   for (let index = 0; index < arrayAcciones.length; index++) {
     switch (arrayAcciones[index].bolsa) {
       case "Índices":
-      cantIndices += 1;
+        cantIndices += 1;
         break;
       case "Cedears":
         cantCedears += 1;
@@ -436,14 +436,14 @@ function generarOpciones() {
 
   let cantTodas = arrayAcciones.length;
 
-  acumulador +=`<li id="${arrayTipoBolsas[0]}" class="dropdown-item">${arrayTipoBolsas[0]} (${cantIndices})</li>
+  acumulador += `<li id="${arrayTipoBolsas[0]}" class="dropdown-item">${arrayTipoBolsas[0]} (${cantIndices})</li>
               <li id="${arrayTipoBolsas[1]}" class="dropdown-item">${arrayTipoBolsas[1]} (${cantCedears})</li>
               <li id="${arrayTipoBolsas[2]}" class="dropdown-item">${arrayTipoBolsas[2]} (${cantNYSE})</li>
               <li id="${arrayTipoBolsas[3]}" class="dropdown-item">${arrayTipoBolsas[3]} (${cantLider})</li>
               <li id="${arrayTipoBolsas[4]}" class="dropdown-item">${arrayTipoBolsas[4]} (${cantGeneral})</li>
               <li id="${arrayTipoBolsas[5]}" class="dropdown-item">${arrayTipoBolsas[5]} (${cantCrypto})</li>
               <li id="${arrayTipoBolsas[6]}" class="dropdown-item">${arrayTipoBolsas[6]} (${cantADR})</li>`;
-  
+
   btnTipoBolsaItem.innerHTML = acumulador;
   acumulador += `<li><hr class="dropdown-divider">
                 <li id="Todas" class="dropdown-item">Todas (${cantTodas})</li>`;
